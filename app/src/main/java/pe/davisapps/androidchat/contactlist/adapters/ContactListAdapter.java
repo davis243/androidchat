@@ -14,13 +14,15 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pe.davisapps.androidchat.contactlist.ui.OnItemClickListener;
 import pe.davisapps.androidchat.domain.AvatarHelper;
-import pe.davisapps.androidchat.lib.ImageLoader;
+
 import pe.davisapps.androidchat.contactlist.entities.User;
 import pe.davisapps.androidchat.R;
+import pe.davisapps.androidchat.lib.ImageLoader;
 
 /**
  * Created by ykro.
  */
+
 public class ContactListAdapter extends RecyclerView.Adapter <ContactListAdapter.ViewHolder> {
     private List<User> contactList;
     private ImageLoader imageLoader;
@@ -107,12 +109,9 @@ public class ContactListAdapter extends RecyclerView.Adapter <ContactListAdapter
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.imgAvatar)
-        CircleImageView imgAvatar;
-        @Bind(R.id.txtStatus)
-        TextView txtStatus;
-        @Bind(R.id.txtUser)
-        TextView txtUser;
+        @Bind(R.id.imgAvatar) CircleImageView imgAvatar;
+        @Bind(R.id.txtStatus) TextView txtStatus;
+        @Bind(R.id.txtUser) TextView txtUser;
         View view;
 
         public ViewHolder(View view) {

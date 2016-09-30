@@ -9,7 +9,6 @@ import pe.davisapps.androidchat.lib.GlideImageLoader;
 import pe.davisapps.androidchat.lib.ImageLoader;
 
 
-
 public class AndroidChatApplication extends Application {
     private ImageLoader imageLoader;
 
@@ -17,18 +16,18 @@ public class AndroidChatApplication extends Application {
     public void onCreate() {
         super.onCreate();
         setupFirebase();
-
+        setupImageLoader();
     }
 
-    private void setupFirebase(){
-
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-    }
     private void setupImageLoader() {
         imageLoader = new GlideImageLoader(this);
     }
 
     public ImageLoader getImageLoader() {
         return imageLoader;
+    }
+
+    private void setupFirebase(){
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 }
