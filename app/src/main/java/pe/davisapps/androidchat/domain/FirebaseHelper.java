@@ -1,4 +1,4 @@
-package pe.davisapps.androidchat;
+package pe.davisapps.androidchat.domain;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;

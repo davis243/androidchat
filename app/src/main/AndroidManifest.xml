@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:name=".AndroidChatApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
