@@ -16,6 +16,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pe.davisapps.androidchat.AndroidChatApplication;
 import pe.davisapps.androidchat.R;
+import pe.davisapps.androidchat.addcontact.ui.AddContactFragment;
+import pe.davisapps.androidchat.chat.ui.ChatActivity;
 import pe.davisapps.androidchat.contactlist.ContactListPresenter;
 import pe.davisapps.androidchat.contactlist.ContactListPresenterImpl;
 import pe.davisapps.androidchat.contactlist.adapters.ContactListAdapter;

@@ -9,6 +9,8 @@ import com.firebase.client.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import pe.davisapps.androidchat.contactlist.entities.User;
+
 public class FirebaseHelper {
     private Firebase dataReference;
     private final static String SEPARATOR = "___";
@@ -88,11 +90,14 @@ public class FirebaseHelper {
 
     }
 
+    public void signOff(){
 
-    public void signOff(boolean online)
+        notifyContactsOfConnectionChange(User.OFFLINE, true);
+    }
+    /*public void signOff(boolean online)
     {
         notifyContactsOfConnectionChange(false,true);
-    }
+    }*/
 
     private void notifyContactsOfConnectionChange(final boolean online, final boolean signoff) {
         final String myEmail = getAuthUserEmail();

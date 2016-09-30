@@ -13,8 +13,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pe.davisapps.androidchat.contactlist.ui.OnItemClickListener;
+import pe.davisapps.androidchat.domain.AvatarHelper;
 import pe.davisapps.androidchat.lib.ImageLoader;
 import pe.davisapps.androidchat.contactlist.entities.User;
+import pe.davisapps.androidchat.R;
 
 /**
  * Created by ykro.

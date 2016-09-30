@@ -13,4 +13,11 @@
     <string name="login.message.password">Contraseña</string>
     <string name="login.message.signin">Iniciar sesión</string>
     <string name="login.message.signup">Crear cuenta</string>
+
+    <string name="addcontact.message.title">Agregar contacto</string>
+    <string name="addcontact.message.add">Aceptar</string>
+    <string name="addcontact.message.cancel">Cancelar</string>
+    <string name="addcontact.message.contactadded">Contacto agregado exitosamente</string>
+    <string name="addcontact.error.message">Imposible agregar usuario no existente</string>
+
 </resources>

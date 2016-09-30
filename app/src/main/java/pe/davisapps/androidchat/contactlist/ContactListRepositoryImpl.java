@@ -3,6 +3,9 @@ package pe.davisapps.androidchat.contactlist;
 
 
 import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.FirebaseError;
+
 
 import pe.davisapps.androidchat.contactlist.entities.User;
 import pe.davisapps.androidchat.contactlist.events.ContactListEvent;
@@ -59,7 +62,7 @@ public class ContactListRepositoryImpl implements ContactListRepository {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError firebaseError) {}
+                public void onCancelled(FirebaseError firebaseError) {}
             };
         }
 
