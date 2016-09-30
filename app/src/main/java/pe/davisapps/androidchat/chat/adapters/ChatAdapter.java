@@ -19,9 +19,7 @@ import pe.davisapps.androidchat.chat.entities.ChatMessage;
 import pe.davisapps.androidchat.R;
 
 
-/**
- * Created by ykro.
- */
+
 public class ChatAdapter extends RecyclerView.Adapter <ChatAdapter.ViewHolder> {
     private Context context;
     private List<ChatMessage> chatMessages;

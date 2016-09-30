@@ -1,16 +1,18 @@
 package pe.davisapps.androidchat.login;
 
+import android.support.annotation.NonNull;
 
-
-import com.firebase.client.AuthData;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-
-import com.firebase.client.ValueEventListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
-
-
+import java.util.Map;
 
 import pe.davisapps.androidchat.contactlist.entities.User;
 import pe.davisapps.androidchat.domain.FirebaseHelper;
@@ -18,13 +20,10 @@ import pe.davisapps.androidchat.lib.EventBus;
 import pe.davisapps.androidchat.lib.GreenRobotEventBus;
 
 
-/**
- * Created by ykro.
- */
 public class LoginRepositoryImpl implements LoginRepository {
     private FirebaseHelper helper;
-    private Firebase dataReference;
-    private Firebase myUserReference;
+    private DatabaseReference dataReference;
+    private DatabaseReference myUserReference;
 
     public LoginRepositoryImpl(){
         helper = FirebaseHelper.getInstance();
@@ -34,62 +33,25 @@ public class LoginRepositoryImpl implements LoginRepository {
 
     @Override
     public void signUp(final String email, final String password) {
-      /*  FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                       */ postEvent(LoginEvent.onSignUpSuccess);
-                       // signIn(email, password);
-                /*    }
+                        postEvent(LoginEvent.onSignUpSuccess);
+                        signIn(email, password);
+                    }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         postEvent(LoginEvent.onSignUpError, e.getMessage());
                     }
-                });*/
+                });
     }
 
     @Override
     public void signIn(String email, String password) {
-        dataReference.authWithPassword(email, password, new Firebase.AuthResultHandler() {
-            @Override
-            public void onAuthenticated(AuthData authData) {
-
-
-                    myUserReference = helper.getMyUserReference();
-                    myUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {
-                            User currentUser = dataSnapshot.getValue(User.class);
-
-                            if(currentUser == null){
-                                String email=helper.getAuthUserEmail();
-                                if(email != null){
-                                    currentUser = new User();
-                                    myUserReference.setValue(currentUser);
-                                }
-                            }
-                            helper.changeUserConnectionStatus(User.ONLINE);
-                            postEvent(LoginEvent.onSignUpSuccess);
-                        }
-
-                        @Override
-                        public void onCancelled(FirebaseError firebaseError) {
-                            postEvent(LoginEvent.onSignInError, firebaseError.getMessage());
-                        }
-
-                    });
-
-            }
-
-            @Override
-            public void onAuthenticationError(FirebaseError firebaseError) {
-                postEvent(LoginEvent.onSignInError,firebaseError.getMessage());
-
-            }
-        });
-     /*   try {
+        try {
             FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signInWithEmailAndPassword(email, password)
                     .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -116,12 +78,12 @@ public class LoginRepositoryImpl implements LoginRepository {
                     });
         } catch (Exception e) {
             postEvent(LoginEvent.onSignInError, e.getMessage());
-        }*/
+        }
     }
 
     @Override
     public void checkAlreadyAuthenticated() {
-       /* if (Firebase.getInstance().getCurrentUser() != null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             myUserReference = helper.getMyUserReference();
             myUserReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -136,7 +98,7 @@ public class LoginRepositoryImpl implements LoginRepository {
             });
         } else {
             postEvent(LoginEvent.onFailedToRecoverSession);
-        }*/
+        }
     }
 
     private void registerNewUser() {

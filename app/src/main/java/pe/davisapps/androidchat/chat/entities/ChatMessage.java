@@ -2,14 +2,12 @@ package pe.davisapps.androidchat.chat.entities;
 
 import com.google.firebase.database.Exclude;
 
-/**
- * Created by ykro.
- */
+
 
 public class ChatMessage {
     String msg;
     String sender;
-    @Exclude
+    //@Exclude
     boolean sentByMe;
 
     public ChatMessage(){}

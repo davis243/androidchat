@@ -8,9 +8,6 @@ import pe.davisapps.androidchat.lib.EventBus;
 import pe.davisapps.androidchat.lib.GreenRobotEventBus;
 
 
-/**
- * Created by ykro.
- */
 public class AddContactPresenterImpl implements AddContactPresenter {
     EventBus eventBus;
     AddContactView addContactView;

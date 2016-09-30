@@ -1,8 +1,6 @@
 package pe.davisapps.androidchat.addcontact.events;
 
-/**
- * Created by ykro.
- */
+
 public class AddContactEvent {
     boolean error = false;
 

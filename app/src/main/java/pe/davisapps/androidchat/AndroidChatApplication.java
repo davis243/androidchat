@@ -2,15 +2,14 @@ package pe.davisapps.androidchat;
 
 import android.app.Application;
 
-import com.firebase.client.Firebase;
+
+import com.google.firebase.database.FirebaseDatabase;
 
 import pe.davisapps.androidchat.lib.GlideImageLoader;
 import pe.davisapps.androidchat.lib.ImageLoader;
 
 
-/**
- * Created by ykro.
- */
+
 public class AndroidChatApplication extends Application {
     private ImageLoader imageLoader;
 
@@ -22,8 +21,8 @@ public class AndroidChatApplication extends Application {
     }
 
     private void setupFirebase(){
-        Firebase.setAndroidContext(this);
-        Firebase.getDefaultConfig().setPersistenceEnabled(true);
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
     private void setupImageLoader() {
         imageLoader = new GlideImageLoader(this);

@@ -1,13 +1,9 @@
 package pe.davisapps.androidchat.chat;
 
-
-
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-
-
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.DatabaseError;
 
 import pe.davisapps.androidchat.chat.entities.ChatMessage;
 import pe.davisapps.androidchat.chat.events.ChatEvent;
@@ -16,9 +12,6 @@ import pe.davisapps.androidchat.lib.EventBus;
 import pe.davisapps.androidchat.lib.GreenRobotEventBus;
 
 
-/**
- * Created by ykro.
- */
 public class ChatRepositoryImpl implements ChatRepository {
     private String receiver;
     private FirebaseHelper helper;
@@ -61,20 +54,16 @@ public class ChatRepositoryImpl implements ChatRepository {
                 public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
                 @Override
-                public void onCancelled(FirebaseError firebaseError) {
-
-                }
-
-
+                public void onCancelled(DatabaseError firebaseError) {}
             };
-            helper.getChatReference(receiver).addChildEventListener(chatEventListener);
+            helper.getChatsReference(receiver).addChildEventListener(chatEventListener);
         }
     }
 
     @Override
     public void unSubscribeForChatUpates() {
         if (chatEventListener != null) {
-            helper.getChatReference(receiver).removeEventListener(chatEventListener);
+            helper.getChatsReference(receiver).removeEventListener(chatEventListener);
         }
     }
 
@@ -87,12 +76,11 @@ public class ChatRepositoryImpl implements ChatRepository {
     public void sendMessage(String msg) {
         String keySender = helper.getAuthUserEmail().replace(".","_");
         ChatMessage chatMessage = new ChatMessage(keySender, msg);
-        Firebase chatsReference = helper.getChatReference(receiver);
+        DatabaseReference chatsReference = helper.getChatsReference(receiver);
         chatsReference.push().setValue(chatMessage);
     }
 
     public void changeUserConnectionStatus(boolean online) {
         helper.changeUserConnectionStatus(online);
     }
-
 }

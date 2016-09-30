@@ -1,8 +1,6 @@
 package pe.davisapps.androidchat.addcontact;
 
-/**
- * Created by ykro.
- */
+
 public class AddContactInteractorImpl implements AddContactInteractor {
     AddContactRepositoryImpl addContactRepository;
 

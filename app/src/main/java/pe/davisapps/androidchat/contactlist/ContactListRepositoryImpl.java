@@ -1,11 +1,8 @@
 package pe.davisapps.androidchat.contactlist;
 
-
-
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.FirebaseError;
-
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 
 import pe.davisapps.androidchat.contactlist.entities.User;
 import pe.davisapps.androidchat.contactlist.events.ContactListEvent;
@@ -14,9 +11,6 @@ import pe.davisapps.androidchat.lib.EventBus;
 import pe.davisapps.androidchat.lib.GreenRobotEventBus;
 
 
-/**
- * Created by ykro.
- */
 public class ContactListRepositoryImpl implements ContactListRepository {
     private FirebaseHelper helper;
 
@@ -62,7 +56,7 @@ public class ContactListRepositoryImpl implements ContactListRepository {
                 }
 
                 @Override
-                public void onCancelled(FirebaseError firebaseError) {}
+                public void onCancelled(DatabaseError firebaseError) {}
             };
         }
 

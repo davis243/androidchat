@@ -21,9 +21,6 @@ import pe.davisapps.androidchat.addcontact.AddContactPresenter;
 import pe.davisapps.androidchat.addcontact.AddContactPresenterImpl;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class AddContactFragment extends DialogFragment
                                 implements AddContactView,
                                             DialogInterface.OnShowListener {
